@@ -5,22 +5,33 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-	long long mul(int j, int n){
-	    long long mul=pow(j,n);
-	    
-	    return mul;
-	    
+	//return 1 if == m
+	// return 0 if <m
+	// return 2 if > m
+	long long mul(int mid, int n, int m){
+	    long long mul=1;
+	    for(int i=1; i<=n; i++){
+	        mul *= mid;
+	        if(mul>m) return 2;
+	    }
+	    if(mul == m) return 1;
+	    return 0;
 	}
 	int NthRoot(int n, int m)
 	{
 	    // Code here.
-	    long long check;
-	    for(int i=1; i<=m; i++){
-	        if(mul(i,n)==m){
-	            return i;
+	    int i = 1, j = m;
+	    while(i<=j){
+	        int mid = (i+j)/2;
+	        if(mul(mid,n,m)==1){
+	            return mid;
 	        }
-	        else if(mul(i,n)>m) 
-	            break;
+	        else if(mul(mid,n,m)==2){
+	            j = mid -1;
+	        }
+	        else{
+	            i = mid + 1;
+	        }
 	    }
 	    return -1;
 	}  
