@@ -12,16 +12,19 @@ class Solution{
     long long int floorSqrt(long long int x) 
     {
         // Your code goes here
-        long long ans;
-        for(long long i=1; i<=x; i++){
-            if(i*i<=x){
-                ans = i;
+        
+        long long i = 1, j = x;
+        while(i<=j){
+            long long mid = (i+j)/2;
+            if(mid*mid <= x){
+                i = mid + 1;
             }
             else{
-                break;
+                j = mid -1;
             }
+            
         }
-        return ans;
+        return j;
     }
 };
 
