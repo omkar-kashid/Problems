@@ -6,10 +6,8 @@ using namespace std;
 class Solution{
 	public:
 	long long mul(int j, int n){
-	    long long mul=1;
-	    for(int i=1; i<=n; i++){
-	        mul *= j;
-	    }
+	    long long mul=pow(j,n);
+	    
 	    return mul;
 	    
 	}
