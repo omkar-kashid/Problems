@@ -12,14 +12,14 @@ class Solution{
     int countSubArrayProductLessThanK(const vector<int>& a, int n, long long k) {
         long long prod = 1;
         int count=0;
-        for(int i=0; i<n; i++){
-            prod = 1;
-            for(int j=i; j<n; j++){
-                prod *= a[j];
-                if(prod<k) count++;
-                else
-                    break;
+        int i=0;
+        for(int j=0; j<n; j++){
+            prod *= a[j];
+            while(prod>=k && i<j){
+                prod /= a[i];
+                i++;
             }
+            if(prod<k) count+= (j-i)+1;
         }
         return count;
     }
