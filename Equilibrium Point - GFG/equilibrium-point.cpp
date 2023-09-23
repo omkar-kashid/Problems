@@ -12,40 +12,26 @@ class Solution{
     int equilibriumPoint(long long a[], int n) {
     
         // Your code here
-         long sum1=0;
-    long sum2=0;
-    int i=0;
-    int j=n-1;
-    sum1+=a[i];
-    sum2+=a[j];
-
- 
-       while(i<n)
-       {
-           if(sum1==sum2)
-          { 
-            if(j-i==2)
-            return j;
-            else
-            {
-                i++;j--;
-                sum1+=a[i];
-                sum2+=a[j];
+        long long i=0, j=n-1, leftSum=0, rightSum=0;
+        while(i<=j){
+            if(leftSum<rightSum){
+                leftSum+=a[i];
+                i++;
             }
-          }
-          else if(sum1>sum2)
-         {
-             j--;
-             sum2+=a[j];
-         }
-          else if(sum2>sum1)
-         {
-             i++;
-             sum1+=a[i];
-         }
-          
-       }
-       return -1;
+            else if(rightSum<leftSum){
+                rightSum+=a[j];
+                j--;
+            }
+            else{
+                if(i==j) return i+1;
+                leftSum+=a[i];
+                rightSum+=a[j];
+                i++;
+                j--;
+            }
+        }
+        return -1;
+        
     }
 
 };
